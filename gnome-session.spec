@@ -1,12 +1,13 @@
 Summary:	GNOME session manager
 Name:		gnome-session
-Version:	3.6.1
+Version:	3.6.2
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	5022e9d7ec5fd8eb34b635d5c6e0455f
+# Source0-md5:	355730543dbcc166f331d806cd0da22d
 Source1:	%{name}-gnome.desktop
+Source2:	gnome-authentication-agent.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -38,6 +39,9 @@ sed -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
     -i -e 's/GNOME_COMMON_INIT//g'		\
     -i -e 's/GNOME_DEBUG_CHECK//g' configure.ac
 
+# 3d with llvmpipe
+%{__sed} -i "/-llvmpipe/d" data/hardware-compatibility
+
 %build
 %{__glib_gettextize}
 %{__intltoolize}
@@ -48,7 +52,6 @@ sed -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
 %configure \
 	--disable-silent-rules	\
 	--enable-systemd
-
 %{__make}
 
 %install
@@ -60,6 +63,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/{autostart,default-session,shutdown}
 
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
+install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,crh,en@shaw,ha,ig,tk,ps}
 
@@ -90,14 +94,14 @@ rm -fr $RPM_BUILD_ROOT
 %dir %{_datadir}/gnome/shutdown
 %dir %{_datadir}/gnome-session
 %dir %{_datadir}/gnome-session/sessions
+%{_datadir}/glib-2.0/schemas/org.gnome.SessionManager.gschema.xml
+%{_datadir}/gnome/autostart/gnome-authentication-agent.desktop
 %{_datadir}/gnome-session/gsm-inhibit-dialog.ui
 %{_datadir}/gnome-session/hardware-compatibility
 %{_datadir}/gnome-session/session-properties.ui
 %{_datadir}/gnome-session/sessions/gnome-fallback.session
 %{_datadir}/gnome-session/sessions/gnome.session
 %{_datadir}/xsessions/gnome.desktop
-%{_datadir}/GConf/gsettings/gnome-session.convert
-%{_datadir}/glib-2.0/schemas/org.gnome.SessionManager.gschema.xml
 %{_desktopdir}/session-properties.desktop
 %{_iconsdir}/hicolor/*/*/session-properties.*
 %{_mandir}/man[15]/*
