@@ -1,11 +1,11 @@
 Summary:	GNOME session manager
 Name:		gnome-session
-Version:	3.6.2
+Version:	3.8.0
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	355730543dbcc166f331d806cd0da22d
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.8/%{name}-%{version}.tar.xz
+# Source0-md5:	54ae6d72bd043148bd9975ba39c8ecdf
 Source1:	%{name}-gnome.desktop
 Source2:	gnome-authentication-agent.desktop
 URL:		http://www.gnome.org/
@@ -84,11 +84,13 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS *ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gnome-session
+%attr(755,root,root) %{_bindir}/gnome-session-inhibit
 %attr(755,root,root) %{_bindir}/gnome-session-properties
 %attr(755,root,root) %{_bindir}/gnome-session-quit
 %dir %{_libexecdir}
 %attr(755,root,root) %{_libexecdir}/gnome-session-check-accelerated
 %attr(755,root,root) %{_libexecdir}/gnome-session-check-accelerated-helper
+%attr(755,root,root) %{_libexecdir}/gnome-session-failed
 %dir %{_datadir}/gnome/autostart
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
@@ -99,7 +101,7 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/gnome-session/gsm-inhibit-dialog.ui
 %{_datadir}/gnome-session/hardware-compatibility
 %{_datadir}/gnome-session/session-properties.ui
-%{_datadir}/gnome-session/sessions/gnome-fallback.session
+%{_datadir}/gnome-session/sessions/gnome-dummy.session
 %{_datadir}/gnome-session/sessions/gnome.session
 %{_datadir}/xsessions/gnome.desktop
 %{_desktopdir}/session-properties.desktop
