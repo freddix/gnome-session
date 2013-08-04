@@ -1,11 +1,11 @@
 Summary:	GNOME session manager
 Name:		gnome-session
-Version:	3.8.2.1
+Version:	3.8.4
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	085dc433f7c422dfb79bf5e65d961211
+# Source0-md5:	fe1ed9e5168eab3594fffa069822a836
 Source1:	%{name}-gnome.desktop
 Source2:	gnome-authentication-agent.desktop
 URL:		http://www.gnome.org/
