@@ -1,13 +1,12 @@
 Summary:	GNOME session manager
 Name:		gnome-session
 Version:	3.8.4
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.8/%{name}-%{version}.tar.xz
 # Source0-md5:	fe1ed9e5168eab3594fffa069822a836
 Source1:	%{name}-gnome.desktop
-Source2:	gnome-authentication-agent.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -34,7 +33,7 @@ related utilities.
 %setup -q
 
 # kill gnome common deps
-sed -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
+%{__sed} -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
     -i -e 's/GNOME_MAINTAINER_MODE_DEFINES//g'	\
     -i -e 's/GNOME_COMMON_INIT//g'		\
     -i -e 's/GNOME_DEBUG_CHECK//g' configure.ac
@@ -63,7 +62,6 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/{autostart,default-session,shutdown}
 
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,crh,en@shaw,ha,ig,tk,ps}
 
@@ -97,7 +95,6 @@ rm -fr $RPM_BUILD_ROOT
 %dir %{_datadir}/gnome-session
 %dir %{_datadir}/gnome-session/sessions
 %{_datadir}/glib-2.0/schemas/org.gnome.SessionManager.gschema.xml
-%{_datadir}/gnome/autostart/gnome-authentication-agent.desktop
 %{_datadir}/gnome-session/gsm-inhibit-dialog.ui
 %{_datadir}/gnome-session/hardware-compatibility
 %{_datadir}/gnome-session/session-properties.ui
