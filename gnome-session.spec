@@ -1,16 +1,16 @@
 Summary:	GNOME session manager
 Name:		gnome-session
-Version:	3.8.4
-Release:	2
+Version:	3.10.0
+Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	fe1ed9e5168eab3594fffa069822a836
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.10/%{name}-%{version}.tar.xz
+# Source0-md5:	2cb174054b021e36a75d9576ef28b5c8
 Source1:	%{name}-gnome.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gtk+3-devel
+BuildRequires:	gtk+3-devel >= 3.10.0
 BuildRequires:	intltool
 BuildRequires:	json-glib-devel
 BuildRequires:	libtool
@@ -95,13 +95,12 @@ rm -fr $RPM_BUILD_ROOT
 %dir %{_datadir}/gnome-session
 %dir %{_datadir}/gnome-session/sessions
 %{_datadir}/glib-2.0/schemas/org.gnome.SessionManager.gschema.xml
-%{_datadir}/gnome-session/gsm-inhibit-dialog.ui
 %{_datadir}/gnome-session/hardware-compatibility
 %{_datadir}/gnome-session/session-properties.ui
 %{_datadir}/gnome-session/sessions/gnome-dummy.session
 %{_datadir}/gnome-session/sessions/gnome.session
 %{_datadir}/xsessions/gnome.desktop
-%{_desktopdir}/session-properties.desktop
+%{_desktopdir}/gnome-session-properties.desktop
 %{_iconsdir}/hicolor/*/*/session-properties.*
 %{_mandir}/man[15]/*
 
