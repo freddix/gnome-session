@@ -1,11 +1,11 @@
 Summary:	GNOME session manager
 Name:		gnome-session
-Version:	3.12.0
+Version:	3.12.1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	cf08255030b0ff968a4900eff1c125c6
+# Source0-md5:	f44ffd94643ff716d241d65c39760965
 Source1:	%{name}-gnome.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
@@ -63,7 +63,8 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/{autostart,default-session,shutdown}
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,crh,en@shaw,ha,ig,tk,ps}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/GConf
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,crh,en@shaw,ha,ig,tk,ps}
 
 %find_lang %{name} --with-gnome --all-name
 
