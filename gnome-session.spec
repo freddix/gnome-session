@@ -1,25 +1,23 @@
 Summary:	GNOME session manager
 Name:		gnome-session
-Version:	3.12.1
+Version:	3.14.0
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	f44ffd94643ff716d241d65c39760965
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.14/%{name}-%{version}.tar.xz
+# Source0-md5:	ca05c48f7dfe6ddd78ac0a6bffb9592a
 Source1:	%{name}-gnome.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gtk+3-devel >= 3.12.0
+BuildRequires:	gtk+3-devel >= 3.14.0
 BuildRequires:	intltool
 BuildRequires:	json-glib-devel
 BuildRequires:	libtool
 BuildRequires:	perl-base
 BuildRequires:	pkg-config
 BuildRequires:	systemd-devel
-BuildRequires:	upower-devel >= 0.99.0
 Requires(post,preun):	glib-gio-gsettings
-Requires:	upower >= 0.99.0
 Provides:	xsession
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -50,6 +48,7 @@ related utilities.
 %{__automake}
 %configure \
 	--disable-silent-rules	\
+	--disable-gconf		\
 	--enable-systemd
 %{__make}
 
@@ -64,7 +63,6 @@ install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
 
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/GConf
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,crh,en@shaw,ha,ig,tk,ps}
 
 %find_lang %{name} --with-gnome --all-name
 
